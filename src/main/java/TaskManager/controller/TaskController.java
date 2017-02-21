@@ -35,7 +35,14 @@ public class TaskController {
         model.addAttribute("listTasks", this.taskService.showTasks());
         return "tasks";
     }
-
+    @RequestMapping(
+            value = {"doneTask"},
+            method = {RequestMethod.GET}
+    )
+    public String listDoneTasks(Model model) {
+        model.addAttribute("listDoneTasks", this.taskService.showDoneTasks());
+        return "doneTask";
+    }
     @RequestMapping(
             value = {"/tasks/add"},
             method = {RequestMethod.POST}
@@ -68,4 +75,10 @@ public class TaskController {
         model.addAttribute("task", this.taskService.getTaskById(numberOfTask));
         return "tasksdata";
     }
+    @RequestMapping({"done/{numberOfTask}"})
+    public String doneTask(@PathVariable("numberOfTask") int numberOfTask) {
+        this.taskService.closeTask(numberOfTask);
+        return "redirect:/tasks";
+    }
+
 }

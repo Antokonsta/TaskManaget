@@ -13,4 +13,7 @@ public interface TaskService {
     Task getTaskById(int var1);
 
     List<Task> showTasks();
+    List<Task> showDoneTasks();
+
+    void closeTask(int id);
 }

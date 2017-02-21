@@ -41,8 +41,19 @@ public class TaskServiceImpl implements TaskService {
         return this.taskDao.showTasks();
     }
 
+    @Transactional
+    public List<Task> showDoneTasks() {
+        return this.taskDao.showDoneTasks();
+    }
+
+    @Transactional
+    public void closeTask(int id) {
+        this.taskDao.closeTask(id);
+    }
+
     public void setTaskDao(TaskDaoImpl taskDao) {
         this.taskDao = taskDao;
     }
+
 }
 

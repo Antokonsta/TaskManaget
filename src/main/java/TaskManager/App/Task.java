@@ -37,6 +37,11 @@ public class Task {
     )
     private String description;
 
+    @Column(
+            name = "done"
+    )
+    private boolean done = false;
+
     public Task() {
     }
 
@@ -78,6 +83,14 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
     }
 
     public String toString() {

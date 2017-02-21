@@ -42,7 +42,7 @@ public class TaskDaoImpl implements TaskDao {
             session.delete(task);
         }
 
-        logger.info("Task successfully removed. Task details: " + task);
+        logger.info("Task successfully removed. Task detail: " + task);
     }
 
     public Task getTaskById(int id) {
@@ -54,7 +54,7 @@ public class TaskDaoImpl implements TaskDao {
 
     public List<Task> showTasks() {
         Session session = this.sessionFactory.getCurrentSession();
-        List taskList = session.createQuery("from Task ").list();
+        List taskList = session.createQuery("from Task where done = false ").list();
         Iterator var3 = taskList.iterator();
 
         while(var3.hasNext()) {
@@ -63,5 +63,26 @@ public class TaskDaoImpl implements TaskDao {
         }
 
         return taskList;
+    }
+
+    public List<Task> showDoneTasks(){
+        Session session = this.sessionFactory.getCurrentSession();
+        List taskList = session.createQuery("from Task where done = true ").list();
+        Iterator var3 = taskList.iterator();
+
+        while(var3.hasNext()) {
+            Task task = (Task)var3.next();
+            logger.info("Task list: " + task);
+        }
+
+        return taskList;
+    }
+
+    public void closeTask(int id){
+        Session session = this.sessionFactory.getCurrentSession();
+        Task task = (Task)session.load(Task.class, new Integer(id));
+        task.setDone(true);
+        session.update(task);
+        logger.info("Task successfully done. Task detail: " + task.toString());
     }
 }
