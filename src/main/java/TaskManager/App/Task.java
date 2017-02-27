@@ -42,6 +42,14 @@ public class Task {
     )
     private boolean done = false;
 
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
+
     public Task() {
     }
 
@@ -83,14 +91,6 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public boolean isDone() {
-        return done;
-    }
-
-    public void setDone(boolean done) {
-        this.done = done;
     }
 
     public String toString() {

@@ -11,6 +11,8 @@
 
 
     <style type="text/css">
+
+
         .tg {
             border-collapse: collapse;
             border-spacing: 0;
@@ -19,7 +21,7 @@
 
         .tg td {
 
-            font-family: Arial, sans-serif;
+            font-family: 'Lato', sans-serif;
             font-size: 14px;
             padding: 10px 5px;
             border-style: solid;
@@ -32,7 +34,7 @@
         }
 
         .tg th {
-            font-family: Arial, sans-serif;
+            font-family: 'Lato', sans-serif;
             font-size: 14px;
             font-weight: normal;
             padding: 10px 5px;
@@ -48,6 +50,9 @@
         .tg .tg-4eph {
             background-color: #f9f9f9
         }
+
+
+
     </style>
 
 
@@ -61,6 +66,8 @@
 <br/>
 
 
+
+
 <table class="tg">
     <tr>
         <th width="120">Название</th>
@@ -68,6 +75,7 @@
         <th width="120">Дедлайн</th>
         <th width="120">Описание</th>
         <th width="60">Удалить</th>
+        <th width="90">Вернуть в работу</th>
     </tr>
     <c:forEach items="${listDoneTasks}" var="task">
         <tr>
@@ -76,6 +84,7 @@
             <td>${task.deadLineOfTask}</td>
             <td>${task.description}</td>
             <td><a href="<c:url value='/remove/${task.numberOfTask}'/>">Удалить</a></td>
+            <td><a href="<c:url value='/return/${task.numberOfTask}'/>">Вернуть в работу</a></td>
         </tr>
     </c:forEach>
 </table>

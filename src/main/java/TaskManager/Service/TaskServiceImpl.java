@@ -51,6 +51,11 @@ public class TaskServiceImpl implements TaskService {
         this.taskDao.closeTask(id);
     }
 
+    @Transactional
+    public void returnTask(int id) {
+        this.taskDao.returnTask(id);
+    }
+
     public void setTaskDao(TaskDaoImpl taskDao) {
         this.taskDao = taskDao;
     }

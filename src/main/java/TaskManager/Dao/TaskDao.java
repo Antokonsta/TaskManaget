@@ -10,9 +10,12 @@ public interface TaskDao {
 
     void removeTask(int var1);
 
+    void returnTask(int id);
+
     Task getTaskById(int var1);
 
     List<Task> showTasks();
+
     List<Task> showDoneTasks();
 
     void closeTask(int id);

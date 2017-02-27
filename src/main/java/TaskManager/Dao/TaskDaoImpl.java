@@ -45,6 +45,15 @@ public class TaskDaoImpl implements TaskDao {
         logger.info("Task successfully removed. Task detail: " + task);
     }
 
+    public void returnTask(int id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        Task task = (Task)session.load(Task.class, new Integer(id));
+        task.setDone(false);
+        session.update(task);
+
+        logger.info("Task successfully removed. Task detail: " + task);
+    }
+
     public Task getTaskById(int id) {
         Session session = this.sessionFactory.getCurrentSession();
         Task task = (Task)session.load(Task.class, new Integer(id));
