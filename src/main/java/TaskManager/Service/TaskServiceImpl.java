@@ -37,13 +37,13 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Transactional
-    public List<Task> showTasks() {
-        return this.taskDao.showTasks();
+    public List<Task> showTasks(String acc) {
+        return this.taskDao.showTasks(acc);
     }
 
     @Transactional
-    public List<Task> showDoneTasks() {
-        return this.taskDao.showDoneTasks();
+    public List<Task> showDoneTasks(String acc) {
+        return this.taskDao.showDoneTasks(acc);
     }
 
     @Transactional

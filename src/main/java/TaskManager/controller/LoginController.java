@@ -58,7 +58,8 @@ public class LoginController {
     public String checkLogin(@ModelAttribute("login") Account login, Model model) {
         if(this.accService.checkLogin(login)){
             model.addAttribute("task", new Task());
-            model.addAttribute("listTasks", this.taskService.showTasks());
+            model.addAttribute("listTasks", this.taskService.showTasks(login.getLogin()));
+            model.addAttribute("acc",login.getLogin());
             return "tasks";
         }
         return "redirect:/autorization";

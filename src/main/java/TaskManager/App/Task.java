@@ -37,12 +37,18 @@ public class Task {
     )
     private boolean done = false;
 
-    @ManyToOne
-    @JoinColumn(name = "Acc_ID")
-    private Account account;
+    @Column(
+            name = "account"
+    )
+    private String account;
 
+    public Task() {
 
+    }
 
+    public Task(String account) {
+        this.account = account;
+    }
 
     public boolean isDone() {
         return done;
@@ -52,8 +58,7 @@ public class Task {
         this.done = done;
     }
 
-    public Task() {
-    }
+
 
     public int getNumberOfTask() {
         return this.numberOfTask;
@@ -93,6 +98,14 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     public String toString() {

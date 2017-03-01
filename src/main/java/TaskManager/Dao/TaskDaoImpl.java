@@ -61,9 +61,10 @@ public class TaskDaoImpl implements TaskDao {
         return task;
     }
 
-    public List<Task> showTasks() {
+    public List<Task> showTasks(String acc) {
         Session session = this.sessionFactory.getCurrentSession();
-        List taskList = session.createQuery("from Task where done = false ").list();
+        List taskList = session.createQuery("from Task where done = false and account = :acc")
+                .setString("acc",acc).list();
         Iterator var3 = taskList.iterator();
 
         while(var3.hasNext()) {
@@ -74,9 +75,10 @@ public class TaskDaoImpl implements TaskDao {
         return taskList;
     }
 
-    public List<Task> showDoneTasks(){
+    public List<Task> showDoneTasks(String acc){
         Session session = this.sessionFactory.getCurrentSession();
-        List taskList = session.createQuery("from Task where done = true ").list();
+        List taskList = session.createQuery("from Task where done = true and account = :acc ")
+                .setString("acc",acc).list();
         Iterator var3 = taskList.iterator();
 
         while(var3.hasNext()) {

@@ -32,72 +32,96 @@ public class TaskController {
 
 
     @RequestMapping(
-            value = {"tasks"},
+            value = {"tasks/{acc}"},
             method = {RequestMethod.GET}
     )
-    public String listTasks(Model model) {
+    public String listTasks(@PathVariable("acc") String acc,Model model) {
+        model.addAttribute("acc",acc);
         model.addAttribute("task", new Task());
-        model.addAttribute("listTasks", this.taskService.showTasks());
+        model.addAttribute("listTasks", this.taskService.showTasks(acc));
         return "tasks";
     }
     @RequestMapping(
-            value = {"doneTask"},
+            value = {"doneTask/{acc}"},
             method = {RequestMethod.GET}
     )
-    public String listDoneTasks(Model model) {
-        model.addAttribute("listDoneTasks", this.taskService.showDoneTasks());
+    public String listDoneTasks(@PathVariable("acc") String acc,
+                                Model model) {
+        model.addAttribute("acc",acc);
+        model.addAttribute("listDoneTasks", this.taskService.showDoneTasks(acc));
         return "doneTask";
     }
     @RequestMapping(
-            value = {"addTask"},
+            value = {"/addTask/{acc}"},
             method = {RequestMethod.GET}
     )
-    public String showAddTask(Model model) {
+    public String showAddTask(@PathVariable("acc") String acc,Model model) {
         model.addAttribute("task", new Task());
+        model.addAttribute("acc",acc);
         return "addTask";
     }
 
     @RequestMapping(
-            value = {"/tasks/add"},
+            value = {"/tasks/add/{acc}"},
             method = {RequestMethod.POST}
     )
-    public String addTask(@ModelAttribute("task") Task task) {
+    public String addTask(@PathVariable("acc") String acc,@ModelAttribute("task") Task task, Model model) {
+        task.setAccount(acc);
         if(task.getNumberOfTask() == 0) {
             this.taskService.addTask(task);
         } else {
             this.taskService.updateTask(task);
         }
-
-        return "redirect:/tasks";
+        model.addAttribute("acc",acc);
+        model.addAttribute("task", new Task());
+        model.addAttribute("listTasks", this.taskService.showTasks(acc));
+        return "tasks";
     }
 
-    @RequestMapping({"/remove/{numberOfTask}"})
-    public String removeTask(@PathVariable("numberOfTask") int numberOfTask) {
+    @RequestMapping({"/remove/{numberOfTask}/{acc}"})
+    public String removeTask(@PathVariable("acc") String acc,
+                             @PathVariable("numberOfTask") int numberOfTask, Model model) {
+
         this.taskService.removeTask(numberOfTask);
-        return "redirect:/tasks";
+        model.addAttribute("acc",acc);
+        model.addAttribute("task", new Task());
+        model.addAttribute("listTasks", this.taskService.showTasks(acc));
+        return "tasks";
     }
 
-    @RequestMapping({"edit/{numberOfTask}"})
-    public String editTask(@PathVariable("numberOfTask") int numberOfTask, Model model) {
+    @RequestMapping({"edit/{numberOfTask}/{acc}"})
+    public String editTask(@PathVariable("acc") String acc,
+                           @PathVariable("numberOfTask") int numberOfTask, Model model) {
+        model.addAttribute("acc",acc);
         model.addAttribute("task", this.taskService.getTaskById(numberOfTask));
         return "addTask";
     }
 
-    @RequestMapping({"taskdata/{numberOfTask}"})
-    public String taskData(@PathVariable("numberOfTask") int numberOfTask, Model model) {
+    @RequestMapping({"taskdata/{numberOfTask}/{acc}"})
+    public String taskData(@PathVariable("acc") String acc,
+                           @PathVariable("numberOfTask") int numberOfTask, Model model) {
+        model.addAttribute("acc",acc);
         model.addAttribute("task", this.taskService.getTaskById(numberOfTask));
         return "tasksdata";
     }
-    @RequestMapping({"done/{numberOfTask}"})
-    public String doneTask(@PathVariable("numberOfTask") int numberOfTask) {
+    @RequestMapping({"done/{numberOfTask}/{acc}"})
+    public String doneTask(@PathVariable("acc") String acc,
+                           @PathVariable("numberOfTask") int numberOfTask, Model model) {
+
         this.taskService.closeTask(numberOfTask);
-        return "redirect:/tasks";
+        model.addAttribute("acc",acc);
+        model.addAttribute("task", new Task());
+        model.addAttribute("listTasks", this.taskService.showTasks(acc));
+        return "tasks";
     }
 
-    @RequestMapping({"/return/{numberOfTask}"})
-    public String returnTask(@PathVariable("numberOfTask") int numberOfTask) {
+    @RequestMapping({"/return/{numberOfTask}/{acc}"})
+    public String returnTask(@PathVariable("acc") String acc,
+                             @PathVariable("numberOfTask") int numberOfTask, Model model) {
         this.taskService.returnTask(numberOfTask);
-        return "redirect:/doneTask";
+        model.addAttribute("acc",acc);
+        model.addAttribute("listDoneTasks", this.taskService.showDoneTasks(acc));
+        return "doneTask";
     }
 
 }

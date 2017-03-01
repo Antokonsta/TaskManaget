@@ -60,7 +60,7 @@
 <body>
 <h1>Выполненные задачи</h1>
 
-<a href="<c:url value="/tasks"/>">Назад</a>
+<a href="<c:url value="/tasks/${acc}"/>">Назад</a>
 
 <br/>
 <br/>
@@ -83,8 +83,8 @@
             <td>${task.startDateOfTask}</td>
             <td>${task.deadLineOfTask}</td>
             <td>${task.description}</td>
-            <td><a href="<c:url value='/remove/${task.numberOfTask}'/>">Удалить</a></td>
-            <td><a href="<c:url value='/return/${task.numberOfTask}'/>">Вернуть в работу</a></td>
+            <td><a href="<c:url value='/remove/${task.numberOfTask}/${acc}'/>">Удалить</a></td>
+            <td><a href="<c:url value='/return/${task.numberOfTask}/${acc}'/>">Вернуть в работу</a></td>
         </tr>
     </c:forEach>
 </table>

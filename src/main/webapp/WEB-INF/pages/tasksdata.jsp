@@ -54,7 +54,7 @@
 <body>
 <h1>Информация по задаче</h1>
 
-<a href="<c:url value="/tasks"/>" >Назад</a>
+<a href="<c:url value="/tasks/${acc}"/>" >Назад</a>
 
 <br/>
 <br/>

@@ -39,7 +39,7 @@
 <h1>Add Task</h1>
 <br>
 
-<c:url var="addAction" value = "/tasks/add"/>
+<c:url var="addAction" value = "/tasks/add/${acc}"/>
 
 <form:form action="${addAction}" commandName="task">
     <table>

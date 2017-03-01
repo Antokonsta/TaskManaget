@@ -14,9 +14,9 @@ public interface TaskService {
 
     Task getTaskById(int var1);
 
-    List<Task> showTasks();
+    List<Task> showTasks(String acc);
 
-    List<Task> showDoneTasks();
+    List<Task> showDoneTasks(String acc);
 
     void closeTask(int id);
 }
