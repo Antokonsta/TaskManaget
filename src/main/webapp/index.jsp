@@ -7,7 +7,7 @@
 <body>
 <h3>Управление задачами</h3>
 <br/>
-<a href="<c:url value="/tasks"/>" target="_blank">Список задач</a>
+<a href="<c:url value="/autorization"/>" target="_blank">Login</a>
 <br/>
 </body>
 </html>

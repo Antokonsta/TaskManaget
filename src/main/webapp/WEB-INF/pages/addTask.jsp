@@ -11,6 +11,23 @@
 
     <style type="text/css">
 
+        @import url(http://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+        body{
+            background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+            background: linear-gradient(to right, #25c481, #25b7c4);
+            font-family: 'Lato', sans-serif;
+            color: #fff;
+            font-size: 12.5px;
+        }
+        h1{
+            font-size: 30px;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
 
 
 
@@ -20,6 +37,7 @@
 
 
 <h1>Add Task</h1>
+<br>
 
 <c:url var="addAction" value = "/tasks/add"/>
 
@@ -41,7 +59,7 @@
         <tr>
             <td>
                 <form:label path="nameOfTask">
-                    <spring:message text="Название задачи"/>
+                    <spring:message text="Name of the task"/>
                 </form:label>
             </td>
             <td>
@@ -51,7 +69,7 @@
         <tr>
             <td>
                 <form:label path="startDateOfTask">
-                    <spring:message text="Дата начала"/>
+                    <spring:message text="Start date"/>
                 </form:label>
             </td>
             <td>
@@ -61,7 +79,7 @@
         <tr>
             <td>
                 <form:label  path="deadLineOfTask">
-                    <spring:message text="Дедлайн"/>
+                    <spring:message text="Deadline"/>
                 </form:label>
             </td>
             <td>
@@ -72,7 +90,7 @@
         <tr>
             <td>
                 <form:label  path="description">
-                    <spring:message text="Описание"/>
+                    <spring:message text="Description"/>
                 </form:label>
             </td>
             <td>
@@ -87,11 +105,11 @@
             <td colspan="2">
                 <c:if test="${!empty task.nameOfTask}">
                     <input  type="submit"
-                           value="<spring:message text="Изменить "/>"/>
+                           value="<spring:message text="Edit "/>"/>
                 </c:if>
                 <c:if test="${empty task.nameOfTask}">
                     <input  type="submit"
-                           value="<spring:message text="Добавить "/>"/>
+                           value="<spring:message text="Add "/>"/>
                 </c:if>
             </td>
         </tr>

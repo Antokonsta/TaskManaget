@@ -19,4 +19,6 @@ public interface TaskDao {
     List<Task> showDoneTasks();
 
     void closeTask(int id);
+
+
 }

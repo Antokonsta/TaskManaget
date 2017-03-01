@@ -1,6 +1,8 @@
 package TaskManager.controller;
 
+import TaskManager.App.Account;
 import TaskManager.App.Task;
+import TaskManager.Service.AccService;
 import TaskManager.Service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+
 public class TaskController {
     private TaskService taskService;
+    private AccService accService;
 
     public TaskController() {
     }
@@ -25,6 +29,7 @@ public class TaskController {
     public void setTaskService(TaskService taskService) {
         this.taskService = taskService;
     }
+
 
     @RequestMapping(
             value = {"tasks"},

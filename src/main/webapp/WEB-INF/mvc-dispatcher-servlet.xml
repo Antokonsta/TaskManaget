@@ -23,6 +23,7 @@
         <property name="annotatedClasses">
             <list>
                 <value>TaskManager.App.Task</value>
+                <value>TaskManager.App.Account</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -45,6 +46,12 @@
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
     </bean>
-    <mvc:default-servlet-handler/>
-    <mvc:annotation-driven/>
+
+    <!-- AccDao and AccService beans -->
+    <bean id="AccDao" class="TaskManager.Dao.AccDAOImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+    <bean id="AccService" class="TaskManager.Service.AccServiceImpl">
+        <property name="accDao" ref="AccDao"/>
+    </bean>
 </beans>
